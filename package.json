@@ -1,0 +1,38 @@
+{
+  "name": "colorbot",
+  "version": "1.3.3",
+  "description": "A robot that dispatch click event from color rule.",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "compile-windows": "electron-packager . ColorBot --plataform win32 --icon ./app/icon/colorbot.ico --out ./dist --overwrite",
+    "compile-linux": "electron-packager . ColorBot --plataform linux --icon ./app/icon/colorbot.svg --out ./dist --overwrite",
+    "compile-osx": "electron-packager . ColorBot --plataform darwin --icon ./app/icon/colorbot.icns --out ./dist --overwrite",
+    "compile-all": "electron-packager . ColorBot --plataform all --icon ./app/icon/colorbot --out ./dist --overwrite"
+  },
+  "keywords": [
+    "ColorBot",
+    "color",
+    "bot",
+    "robot",
+    "rule"
+  ],
+  "author": "Raphael Bruno",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^4.0.4",
+    "electron-packager": "^13.1.1",
+    "electron-rebuild": "^1.8.4"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.7.2",
+    "bootstrap": "^4.3.1",
+    "electron-log": "^3.0.5",
+    "electron-titlebar": "0.0.3",
+    "jimp": "^0.6.0",
+    "jquery": "^3.3.1",
+    "jquery-mask-plugin": "^1.14.15",
+    "material-icons": "^0.3.0",
+    "robotjs": "^0.5.1"
+  }
+}

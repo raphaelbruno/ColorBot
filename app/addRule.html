@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ColorBot - Add Rule</title>
+    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../node_modules/material-icons/iconfont/material-icons.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  <body>
+    <div id="electron-titlebar" class="drag">
+        <div class="title">ColorBot - Add Rule</div>
+    </div>
+
+    <main id="steps" class="container-fluid">
+      <div class="row">
+          <div class="col">
+            <a class="help float-right" href="javascript: void(0);" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-html="true" data-content="<p>Follow the steps bellow to create a new rule.</p><p>Click on a step, move the mouse at the point you want and hit [Enter] key to capture the point.</p>"><i class="material-icons text-info">help</i></a>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col">
+              <div class="form-group">
+                <label for="name">Rule Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter rule name">
+                <small id="invalidName" class="required-message form-text text-danger position-absolute d-none"><b>The Rule Name must be filled.</b></small>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="col step">
+          <a href="javascript:void(0);" onclick="addStep('color')">
+            <img id="color-image" src="img/color_grayscale.png" width="75%" />
+          </a>
+          <b>1º Step:</b>
+          <br /><small>Choose a color</small>
+        </div>
+        
+        <div class="col step">
+          <a href="javascript:void(0);" onclick="addStep('listener')">
+              <img id="listener-image" src="img/listener_grayscale.png" width="75%" />
+          </a>
+          <b>2º Step:</b>
+          <br /><small>Choose a listener</small>
+        </div>
+          
+        <div class="col step">
+          <a href="javascript:void(0);" onclick="addStep('target')">
+              <img id="target-image" src="img/target_grayscale.png" width="75%" />
+          </a>
+          <b>3º Step:</b>
+          <br /><small>Choose a target</small>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col text-center">
+          <div id="color" class="rule">
+            <div class="color">
+              <small>&nbsp;</small>
+            </div>
+          </div>
+          <small id="invalidColor" class="required-message text-danger d-none"><b>Color must be filled.</b></small>
+        </div>
+        
+        <div class="col text-center">
+          <div id="listener" class="rule">
+            <div class="image">
+              <img />
+            </div>
+          </div>
+          <small id="invalidListener" class="required-message text-danger d-none"><b>Listener must be filled.</b></small>
+        </div>
+        
+        <div class="col text-center">
+          <div id="target" class="rule">
+            <div class="image">
+              <img />
+            </div>
+          </div>
+          <small id="invalidTarget" class="required-message text-danger d-none"><b>Target must be filled.</b></small>
+        </div>
+      </div>
+    </main>
+
+    <footer class="actions">
+      <span id="action-tip" class="float-left d-none">Press [Enter] to set the mouse point.</span>
+      <button type="button" class="btn btn-sm btn-danger" onclick="electron.remote.getCurrentWindow().close()">Cancel</button>
+      <button type="button" class="btn btn-sm btn-success" onclick="saveRule()">Save</button>
+    </footer>
+
+    <script>
+      const electron = require('electron')
+      const { addStep, saveRule, addEscapeListener } = require('./rule')
+      require('electron-titlebar')
+      window.$ = window.jQuery = require('jquery')
+      addEscapeListener()
+      
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+      })
+    </script>
+      
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

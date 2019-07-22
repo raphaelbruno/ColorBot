@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ColorBot - Settings</title>
+    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../node_modules/material-icons/iconfont/material-icons.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  <body>
+    <div id="electron-titlebar" class="drag">
+      <div class="title">ColorBot - Settings</div>
+    </div>
+
+    <main id="steps" class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <a class="help float-right" href="javascript: void(0);" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-html="true" data-content="<p>Change all settings you need and click at save.</p><p>ms = Milliseconds</p>"><i class="material-icons text-info">help</i></a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="delay">Delay (ms)</label>
+            <input type="text" class="form-control number" id="delay" placeholder="Delay to listen events">
+            <small id="invalidDelay" class="required-message form-text text-danger position-absolute d-none"><b>The Delay must be filled.</b></small>
+          </div>
+        </div>
+      
+        <div class="col">
+          <div class="form-group">
+            <label for="minimumDelayNext">Delay to Next (ms)</label>
+            <input type="text" class="form-control number" id="minimumDelayNext" placeholder="Delay to trigger next event">
+            <small id="invalidMinimumDelayNext" class="required-message form-text text-danger position-absolute d-none"><b>The Delay to Next must be filled.</b></small>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <label for="timeStop">Time to Stop</label>
+            <input type="text" class="form-control time" id="timeStop" placeholder="HH:MM:SS">
+            <small id="invalidTimeStop" class="required-message form-text text-danger position-absolute d-none"><b>Fill with a valid format.</b></small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="ignoreFirstTrigger">
+            <label class="custom-control-label" for="ignoreFirstTrigger">Ignore First Trigger</label>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="colorCache">
+            <label class="custom-control-label" for="colorCache">Enable Color Cache</label>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="log">
+            <label class="custom-control-label" for="log">
+              Enable logging <br />
+              <small class="text-warning">(May cause performance loss)</small>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="sound">
+            <label class="custom-control-label" for="sound">Enable Sounds</label>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <div class="col">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="closePositionBefore">
+            <label class="custom-control-label" for="closePositionBefore">Close position before next event</label>
+          </div>
+        </div>
+        
+        <div class="col text-center">
+          <small>Target</small><br />
+          <button type="button" class="btn btn-xs btn-dark settings-edit" onclick="addStep('target', rule => { $('#target').data('rule', rule) })" title="Set Target"><i class="material-icons tiny float-left">edit</i></button>
+          <div id="target" class="rule">
+            <div class="image">
+              <img />
+            </div>
+          </div>
+          <small id="invalidTarget" class="required-message text-danger d-none"><b>Must be filled.</b></small>
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <label for="targetDelay">Delay</label>
+            <input type="text" class="form-control number" id="targetDelay" placeholder="Delay to wait">
+            <small id="invalidTargetDelay" class="required-message form-text text-danger position-absolute d-none"><b>Must be filled.</b></small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="checkConditionBefore">
+            <label class="custom-control-label" for="checkConditionBefore">Check condition before next event</label>
+          </div>
+        </div>
+
+        <div class="col text-center">
+          <small>Color</small><br />
+          <button type="button" class="btn btn-xs btn-dark settings-edit" onclick="addStep('color', rule => { $('#color').data('rule', rule) })" title="Set Color"><i class="material-icons tiny float-left">edit</i></button>
+          <div id="color" class="rule">
+            <div class="color">
+              <small>&nbsp;</small>
+            </div>
+          </div>
+          <small id="invalidColor" class="required-message text-danger d-none"><b>Must be filled.</b></small>
+        </div>
+        
+        <div class="col text-center">
+          <small>Listener</small><br />
+          <button type="button" class="btn btn-xs btn-dark settings-edit" onclick="addStep('listener', rule => { $('#listener').data('rule', rule) })" title="Set Listener"><i class="material-icons tiny float-left">edit</i></button>
+          <div id="listener" class="rule">
+            <div class="image">
+              <img />
+            </div>
+          </div>
+          <small id="invalidListener" class="required-message text-danger d-none"><b>Must be filled.</b></small>
+        </div>
+      </div>  
+
+      <hr />
+
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-sm btn-dark" onclick="factoryReset()">Factory Reset</button>
+          <span class="text-secondary"><b>This will reset all your settings and rules saved.</b></span>
+        </div>
+      </div>
+    </main>
+
+    <footer class="actions">
+      <span id="action-tip" class="float-left d-none">Press [Enter] to set the mouse point.</span>
+      <button type="button" class="btn btn-sm btn-danger" onclick="electron.remote.getCurrentWindow().close()">Cancel</button>
+      <button type="button" class="btn btn-sm btn-success" onclick="save()">Save</button>
+    </footer>
+
+    <script>
+      const electron = require('electron')
+      const { fillFields, save, addEscapeListener, factoryReset } = require('./settings')
+      const { addStep } = require('./rule')
+      require('electron-titlebar')
+      window.$ = window.jQuery = require('jquery')
+      window.$.mask = window.jQuery.mask = require('jquery-mask-plugin');
+      
+
+      addEscapeListener()
+      
+      fillFields()
+
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+        $('.time').mask('00:00:00');
+        $('.number').mask('#');
+      })
+    </script>
+      
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

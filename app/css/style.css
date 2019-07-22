@@ -1,0 +1,53 @@
+body { font-size: .75rem; color: #EEEEEE; background-color: #252526; }
+
+body > main { padding-top: 29px; }
+
+#electron-titlebar { background-color: #3C3C3C; height: 29px !important; } 
+#electron-titlebar .title { width: 100%; height: 100%; text-align: center; color: #CCCCCC; font-size: .75rem; line-height: 29px; }
+
+footer { position: fixed; bottom: 0; width: 100%; background-color: #3C3C3C; text-align: right; padding: .5rem; }
+
+main .help { margin: .5rem .5rem 0; }
+  main .help i { margin: 0; padding: 0; }
+
+#rules { overflow: auto; height: 136px; outline: 1px solid #777777; }
+    .rule .color, 
+    .rule .image { width: 50px; height: 50px; background-color: #333333; border: 1px solid gray; margin: 0 auto; }
+      .rule .color small { font-size: .5rem; padding: 5px; display: block; text-align: center; background-color: #3C3C3C; }
+    .rule .image { position: relative; }
+      .rule .image img { width: 100%; }
+      .rule .image::before { content: ' '; position: absolute; mix-blend-mode: difference; left: 50%; top: 0; width: 1px; height: 48px; background-color: white; }
+      .rule .image::after { content: ' '; position: absolute; mix-blend-mode: difference; left: 0; top: 50%; width: 48px; height: 1px; background-color: white; }
+    .rule .name { background: #444444; }
+    .rule:hover .name { background: #777777; }
+    .rule.active .name { background: #666633; }
+    .rule .material-icons { line-height: 50px; margin-left: -10px; }
+    
+  #rules .rule { color: #EEEEEE; text-decoration: none; outline: 1px solid #666666; }
+  #rules .rule:hover { background-color: #333333; color: #EEEEEE; text-decoration: none; outline: 1px solid #999999; }
+  #rules .rule.active { background-color: #333311; color: #EEEEEE; text-decoration: none; outline: 1px solid #999966; }
+  
+#steps .step { text-align: center; }
+  #steps .step a { color: #EEEEEE; text-decoration: none; }
+  #steps .step a:focus { outline: 1px solid #3366FF; }
+    #steps .step a img { display: block; margin: 0 auto; }
+
+#indicator { font-size: 1rem; }
+
+hr { border-top: 1px solid #333333; }
+
+.tiny { font-size: 16px;   }
+
+.settings-edit { position: absolute; margin-left: -60px; }
+
+#action-tip { line-height: 30px; }
+
+/**
+ * Bootstrap
+ */
+ .btn-group-xs > .btn, .btn-xs {
+  padding: .25rem .4rem;
+  font-size: .875rem;
+  line-height: .5;
+  border-radius: .2rem;
+}

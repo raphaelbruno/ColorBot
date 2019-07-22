@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ColorBot</title>
+    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../node_modules/material-icons/iconfont/material-icons.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  <body>
+    <div id="electron-titlebar" class="drag">
+      <div class="title">ColorBot</div>
+    </div>
+
+    <main class="container-fluid">
+      <br />
+      <div class="row">
+        <div class="col-4">
+          <button type="button" class="btn btn-xs btn-primary" onclick="startBot()" title="Start"><i class="material-icons tiny float-left">play_arrow</i></button>
+          <button type="button" class="btn btn-xs btn-danger" onclick="stopBot()" title="Stop"><i class="material-icons tiny float-left">stop</i></button>
+        </div>
+        <div class="col text-right">
+          <span id="info" class="align-middle">&nbsp;</span>
+          <span id="indicator" class="badge badge-success badge-danger badge-pill align-middle" title="Status">O</span>
+          <button type="button" class="btn btn-xs btn-dark" onclick="openWindowSettings()" title="Settings"><i class="material-icons tiny float-left">settings</i></button>
+          <button type="button" class="btn btn-xs btn-dark" data-toggle="popover" data-trigger="hover" data-placement="bottom" data-html="true" data-content="<p><b>This software is completely free, if you paid for this, perhaps it's time to review who are your friends.<br /><span class=&quot;text-danger&quot;>This software manipulates the mouse cursor, use at your own risk.</span></b></p>"><i class="material-icons text-info tiny">help</i></button>
+        </div>
+      </div>
+      
+      <span id="triggered" class="position-absolute"></span>
+      <small id="invalidRules" class="required-message text-danger d-none position-absolute"><b>Choose at least 1 rule before running the bot!</b></small>      
+      <small id="invalidRemove" class="required-message text-danger d-none position-absolute"><b>Choose the rules to delete!&nbsp;</b></small>
+      <hr />      
+          
+      <div class="row container-fluid">
+        <div id="rules" class="col">
+          <div class="row rule">
+            <div class="col-12 name">
+              Strategy Name
+            </div>
+
+            <div class="col-3">
+              <div class="color align-middle">
+                <small>&nbsp;</small>
+              </div>
+            </div>
+            
+            <div class="col-1">
+              <i class="material-icons">keyboard_arrow_right</i>
+            </div>
+            
+            <div class="col-3">
+              <div class="image listener">
+                <img />
+              </div>
+            </div>
+            
+            <div class="col-1">
+              <i class="material-icons">keyboard_arrow_right</i>
+            </div>
+
+            <div class="col-3">
+              <div class="image target">
+                <img />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-1 text-right">
+          <img onmouseover="soundInfo.play()" class="pull-down position-absolute" data-toggle="popover" data-trigger="hover" data-html="true" data-content="<p><b>&quot;No! Try not! Do or do not, there is no try.&quot;</b>- Yoda</p><p><small><b>Developer:</b> https://github.com/raphaelbruno</small></p>" src="img/colorbot/32x32.png" />
+          <button type="button" class="btn btn-xs btn-success" onclick="openWindowAddRule()" title="Add New Rule"><i class="material-icons tiny float-left">add</i></button>
+          <button type="button" class="btn btn-xs btn-danger" onclick="removeSelectedRules()" title="Delete Selected Rules"><i class="material-icons tiny float-left">delete</i></button>
+        </div>
+      </div>
+    </main>
+    
+    <script>
+      const electron = require('electron')
+      const { openWindowAddRule, openWindowSettings } = electron.remote.require('./main')
+      const { startBot, stopBot, fillList, removeSelectedRules } = require('./bot')
+      const { list } = require('./rule')
+      let soundInfo = new Audio('sound/info.mp3')
+      require('electron-titlebar')
+      window.$ = window.jQuery = require('jquery')
+
+      fillList()
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+
+        $('.pull-down').each(function() {
+          var $this = $(this)
+          $this.css('margin-top', $this.parent().height() - $this.height())
+        })
+      })
+    </script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
