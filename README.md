@@ -2,10 +2,12 @@
 A simple click robot based on color rule.
 
 ColorBot Screen 
+
 ![picture alt](colorbot.png "ColorBot Screen")
 
 Add Rule Screen
-![picture alt](colorbot.png "Add Rule Screen")
+
+![picture alt](colorbot-addrule.png "Add Rule Screen")
 
 # Dependencies
 * Electron
